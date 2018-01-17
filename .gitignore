@@ -8,3 +8,5 @@ packrat/src/
 *.rdata
 *_cache/
 .passwords.R
+*.json
+*.sav

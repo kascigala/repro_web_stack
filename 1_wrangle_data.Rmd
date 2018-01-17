@@ -8,19 +8,25 @@ output:
 
 ```{r message=FALSE, warning=FALSE}
 source("0_helpers.R")
+source(".passwords.R")
+formr_connect(credentials$email, credentials$password)
 ```
 
 ## Wrangle wrangle
 
 ```{r}
-data("msleep")
-msleep %>% 
-	mutate(eats = factor(recode(vore, "carni" = "meat", "omni" = "everything", "herbi" = "plants", "insecti" = "insects"), c("everything","plants", "insects", "meat"))) ->
-msleep
+formr_workshop = formr_results("")
+
 ```
 
 ## Save data
 ```{r}
-saveRDS(msleep, file = "msleep_processed.rds")
+saveRDS(bfi, file = "bfi.rds")
+haven::write.sav(bfi, path = bfi.sav)
 ```
 
+```{r}
+source(".passwords.R")
+formr_connect(credentials$email, credentials$password)
+rm(credentials)
+```
