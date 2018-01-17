@@ -1,3 +1,8 @@
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(error = TRUE)
+```
+
+
 # Descriptives {.tabset .tabset-sticky}
 
 ```{r message=FALSE, warning=FALSE}
@@ -7,23 +12,26 @@ source("0_helpers.R")
 ## Load data
 
 ```{r}
-msleep = readRDS("msleep_processed.rds")
+bfi = readRDS("bfi.rds")
+library(codebook)
+codebook(bfi, survey_repetition = "single")
 ```
 
 ## Descriptives {.active}
 ```{r warning=FALSE}
-msleep %>% 
-	select(sleep_total, sleep_rem, brainwt, bodywt) %>% 
+bfi %>% 
+	select(BFIK_neuro, BFIK_agree, BFIK_consc, BFIK_open, BFIK_extra) %>% 
 	summarise_all_vars()
 ```
 
 ## Distributions
 
 ```{r}
-qplot(eats, data = msleep)
-qplot(sleep_total, data = msleep, binwidth = 0.5)
-qplot(sleep_rem, data = msleep, binwidth = 0.5)
-qplot(sleep_total, sleep_rem, data = msleep)
+qplot(BFIK_neuro, data = bfi, binwidth = 0.5)
+qplot(BFIK_agree, data = bfi, binwidth = 0.5)
+qplot(BFIK_consc, data = bfi, binwidth = 0.5)
+qplot(BFIK_extra, data = bfi, binwidth = 0.5)
+qplot(BFIK_open, data = bfi, binwidth = 0.5)
 ```
 
 ## Look at the data
